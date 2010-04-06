@@ -26,7 +26,7 @@ describe Ohai::System, "Linux lsb plugin" do
     @ohai.stub!(:require_plugin).and_return(true)
     @mock_file = mock("/etc/lsb-release")
     @mock_file.stub!(:each).
-      and_yield("DISTRIB_ID=Ubuntu").
+      and_yield('DISTRIB_ID="Ubuntu"').
       and_yield("DISTRIB_RELEASE=8.04").
       and_yield("DISTRIB_CODENAME=hardy").
       and_yield('DISTRIB_DESCRIPTION="Ubuntu 8.04"')
@@ -50,7 +50,7 @@ describe Ohai::System, "Linux lsb plugin" do
   
   it "should set lsb[:description]" do
     @ohai._require_plugin("linux::lsb")
-    @ohai[:lsb][:description].should == "\"Ubuntu 8.04\""
+    @ohai[:lsb][:description].should == "Ubuntu 8.04"
   end
   
   it "should not set any lsb values if /etc/lsb-release cannot be read" do
